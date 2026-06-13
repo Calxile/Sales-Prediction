@@ -1,11 +1,27 @@
 # Sales Prediction — Rossmann Store Sales
 
 A machine learning project built as part of the **SparkIIT Data Science** internship program.  
-This project predicts the number of orders for Rossmann stores using exploratory data analysis and regression modeling.
+This project predicts daily sales for Rossmann drug stores using exploratory data analysis, sales driver analysis, and regression modeling.
 
 ---
 
-## Project Structure
+## 📊 Dashboard Preview
+
+### Sales Overview
+![Rossmann Store Sales Prediction Dashboard](dashboard/sales_dashboard.png)
+
+### Sales Drivers Analysis
+![Sales Drivers Analysis](dashboard/sales_drivers.png)
+
+### Store Performance Analysis
+![Store Performance Analysis](dashboard/store_performance.png)
+
+### Model Performance Evaluation
+![Model Performance Evaluation](dashboard/model_performance.png)
+
+---
+
+## 📁 Project Structure
 
 ```
 Sales-Prediction/
@@ -15,17 +31,23 @@ Sales-Prediction/
 │       ├── test.csv
 │       ├── store.csv
 │       └── sample_submission.csv
+├── dashboard/
+│   ├── sales_dashboard.png
+│   ├── sales_drivers.png
+│   ├── store_performance.png
+│   └── model_performance.png
 ├── Projects/
 │   └── No_of_Orders.ipynb
+├── model_evaluation.csv
 └── Orders Report.pdf
 ```
 
 ---
 
-## Dataset
+## 📦 Dataset
 
-**Rossmann Store Sales** — sourced from Kaggle  
-Contains historical sales data for 1,115 Rossmann drug stores across Germany.
+**Rossmann Store Sales** — sourced from [Kaggle](https://www.kaggle.com/c/rossmann-store-sales)  
+Contains historical sales data for **1,115 Rossmann drug stores** across Germany.
 
 | File | Description |
 |------|-------------|
@@ -36,53 +58,65 @@ Contains historical sales data for 1,115 Rossmann drug stores across Germany.
 
 ---
 
-## Tools & Libraries
+## 🛠️ Tools & Libraries
 
 - **Python** — Core programming language
 - **Pandas & NumPy** — Data manipulation and analysis
 - **Matplotlib & Seaborn** — Data visualization
 - **Scikit-learn** — Machine learning modeling
+- **Power BI** — Interactive dashboard creation
 
 ---
 
-## Methodology
+## 🔬 Methodology
 
-1. **Data Loading** — Loaded Rossmann store sales dataset
-2. **Exploratory Data Analysis (EDA)** — Distribution plots, correlation heatmaps, outlier detection
-3. **Preprocessing** — Feature scaling using StandardScaler, train-test split (80/20)
-4. **Model Training** — Linear Regression baseline model
-5. **Evaluation** — R² Score and RMSE metrics
+1. **Data Loading** — Loaded Rossmann store sales dataset (train + store metadata)
+2. **Exploratory Data Analysis (EDA)** — Seasonal patterns, weekday trends, promo impact
+3. **Sales Drivers Analysis** — Promotion types, holiday effects, competitor proximity
+4. **Store Performance Analysis** — Store format benchmarking, top/bottom performers
+5. **Preprocessing** — Feature engineering, StandardScaler, 80/20 train-test split
+6. **Model Training** — Linear Regression baseline model
+7. **Evaluation** — R² Score, RMSE, MAE, MAPE; residual analysis; actual vs predicted trends
+8. **Export** — `model_evaluation.csv` with predictions, residuals, and month labels
 
 ---
 
-## Results
+## 📈 Results
 
 | Metric | Value |
 |--------|-------|
-| R² Score | 0.60 |
-| RMSE | ~0.73 (~$73,000) |
-| Train Samples | 16,512 |
-| Test Samples | 4,128 |
+| R² Score | 0.23 |
+| RMSE | 2.70K |
+| MAE | 1.96K |
+| MAPE | 27.51% |
+| Train Period | Jan 2013 – Dec 2014 |
+| Test Period | Jan 2015 – Jul 2015 |
 
 ---
 
-## Key Findings
+## 🔑 Key Findings
 
-- **Median Income (MedInc)** is the strongest predictor with a Pearson correlation of **0.69**
-- The model performs well for mid-range prices but struggles with high-value properties
-- Linear Regression serves as a solid interpretable baseline
+- **December** is the highest-revenue month; sales peak sharply before Christmas
+- **Short-term promotions (Promo1)** significantly boost daily sales across all store formats
+- **Continuous promotions (Promo2)** show weaker and diminishing performance
+- **Store Type B** outperforms all other formats in average daily revenue
+- **Competitor distance** has limited influence on store-level sales
+- **Holiday periods** (Easter, Christmas) generate above-average revenue
+- The model's predictions are concentrated between 6K–10K, underestimating seasonal peaks — indicating heteroscedasticity
+- **Sunday** sees near-zero revenue (store closures)
 
 ---
 
-## Future Improvements
+## 🚀 Future Improvements
 
-- Explore ensemble methods like **Random Forest** or **XGBoost** to improve R² beyond 0.80
-- Apply feature engineering to capture non-linear relationships
+- Explore ensemble methods like **Random Forest** or **XGBoost** to push R² beyond 0.70
+- Apply **feature engineering** to capture non-linear relationships (log-transform sales, interaction terms)
+- Add **store-level embeddings** to account for individual store behaviour
 - Hyperparameter tuning for improved accuracy
 
 ---
 
-## Author
+## 👤 Author
 
 **Ayeshkant Ray**  
 SparkIIT Data Science Program — April 2026
